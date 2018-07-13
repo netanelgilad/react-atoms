@@ -1,0 +1,52 @@
+{
+  "name": "@react-atoms/dom",
+  "version": "0.0.1",
+  "main": "./lib/es2017/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "botique build",
+    "dev": "botique dev",
+    "typecheck": "botique typecheck",
+    "start": "botique start",
+    "assert": "botique assert",
+    "clean": "botique clean",
+    "test": "botique test",
+    "precommit": "lint-staged"
+  },
+  "dependencies": {
+    "@botique/react-behavior": "^0.0.4",
+    "@react-atoms/core": "^0.0.1",
+    "tslib": "^1.9.2"
+  },
+  "devDependencies": {
+    "@botique/cli": "^0.3.28",
+    "@types/jest": "^23.0.0",
+    "husky": "^0.14.3",
+    "jest": "^22.4.4",
+    "lint-staged": "^7.2.0",
+    "ts-jest": "^22.4.6",
+    "typescript": "^2.9.1"
+  },
+  "browser": "./lib/es5/index.js",
+  "lint-staged": {
+    "*.{ts,tsx,js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "types": "./lib/es2017/index.d.ts"
+}
