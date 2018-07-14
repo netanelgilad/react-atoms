@@ -26,7 +26,7 @@ export function Interval(props: {
             clearInterval(state.timer);
           }}
         >
-          {() => <>{props.children}</>}
+          {props.children}
         </Lifecycle>
       )}
     </State>
