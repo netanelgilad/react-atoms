@@ -6,7 +6,7 @@ export class Lifecycle extends React.Component<
     onDidMount?();
     onWillUnmount?();
     onDidUpdate?();
-    children?: React.ReactNode[];
+    children?: React.ReactNode;
   },
   {}
 > {
