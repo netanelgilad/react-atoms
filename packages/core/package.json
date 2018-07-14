@@ -1,6 +1,6 @@
 {
   "name": "@react-atoms/core",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "./lib/es2017/index.js",
   "types": "./lib/es2017/index.d.ts",
   "license": "MIT",
@@ -51,6 +51,5 @@
       "json",
       "node"
     ]
-  },
-  "types": "./lib/es2017/index.d.ts"
+  }
 }
