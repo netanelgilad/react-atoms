@@ -1,5 +1,4 @@
 import React = require("react");
-import { Renderable } from "@botique/react-behavior/lib/Renderable";
 
 export class Lifecycle extends React.Component<
   {
@@ -7,7 +6,7 @@ export class Lifecycle extends React.Component<
     onDidMount?();
     onWillUnmount?();
     onDidUpdate?();
-    children?: Renderable<{}>;
+    children?: React.ReactNode[];
   },
   {}
 > {
@@ -24,10 +23,7 @@ export class Lifecycle extends React.Component<
   }
 
   render() {
-    if (!this.props.children) {
-      return null;
-    }
-    return this.props.children({});
+    return this.props.children;
   }
 
   componentWillUnmount() {
