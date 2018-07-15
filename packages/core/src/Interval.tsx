@@ -1,9 +1,6 @@
 import * as React from "react";
 import { Lifecycle } from "./Lifecycle";
 import { State } from "./State";
-import { Renderable } from "./Renderable";
-
-const a: Renderable<{}> = () => <div>asdasd</div>;
 
 export function Interval(props: {
   interval: number;
