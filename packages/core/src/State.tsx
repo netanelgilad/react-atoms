@@ -1,32 +1,41 @@
-
 import * as React from "react";
-import {Renderable} from "./Renderable";
+import { Renderable } from "./Renderable";
 
-export type StateSpec = { state: any; setState: any; forceUpdate(); };
+export type StateSpec<S> = {
+  state: S;
+  setState<K extends keyof S>(
+    state:
+      | ((prevState: Readonly<S>) => Pick<S, K> | S | null)
+      | (Pick<S, K> | S | null),
+    callback?: () => void
+  ): void;
+};
 
-export type StateProps = {
-  initialState?: any;
-  children: Renderable<StateSpec>;
+export type StateProps<TState> = {
+  initialState?: TState;
+  children: Renderable<StateSpec<TState>>;
   deriveFromProps?: any;
 };
 
-export class State extends React.PureComponent<StateProps, {}> {
-  constructor(props: StateProps) {
+export class State<TState> extends React.PureComponent<
+  StateProps<TState>,
+  TState
+> {
+  constructor(props: StateProps<TState>) {
     super(props);
     this.state = props.initialState;
   }
 
   componentWillReceiveProps(nextProps) {
-      if (nextProps.deriveFromProps) {
-          this.setState(nextProps.deriveFromProps);
-      }
+    if (nextProps.deriveFromProps) {
+      this.setState(nextProps.deriveFromProps);
+    }
   }
 
   render() {
     return this.props.children({
       state: this.state,
-      setState: this.setState.bind(this),
-      forceUpdate: this.forceUpdate.bind(this)
+      setState: this.setState.bind(this)
     });
   }
 }
