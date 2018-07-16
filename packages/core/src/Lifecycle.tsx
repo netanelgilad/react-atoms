@@ -2,18 +2,14 @@ import React = require("react");
 
 export class Lifecycle extends React.Component<
   {
-    onWillMount?();
     onDidMount?();
     onWillUnmount?();
     onDidUpdate?();
+    getSnapshotBeforeUpdate?();
     children?: React.ReactNode;
   },
   {}
 > {
-  componentWillMount() {
-    this.props.onWillMount && this.props.onWillMount();
-  }
-  
   componentDidMount() {
     this.props.onDidMount && this.props.onDidMount();
   }
@@ -22,8 +18,14 @@ export class Lifecycle extends React.Component<
     this.props.onDidUpdate && this.props.onDidUpdate();
   }
 
+  getSnapshotBeforeUpdate() {
+    return this.props.getSnapshotBeforeUpdate
+      ? this.props.getSnapshotBeforeUpdate()
+      : null;
+  }
+
   render() {
-    return this.props.children;
+    return this.props.children || null;
   }
 
   componentWillUnmount() {

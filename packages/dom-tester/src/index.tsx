@@ -10,29 +10,31 @@ export function App() {
           value: 0
         }}
       >
-        {({ state, setState }) => { console.log({state}); return (
-          <Interval
-            interval={1000}
-            run={() => {
-              console.log(state.value);
-              setState((state: any) => ({ value: state.value + 1 }));
-            }}
-          >
-            <Div>
+        {({ state, setState }) => (
+          <>
+            {state.value < 3 && (
+              <Interval
+                interval={1000}
+                run={() => setState(state => ({ value: state.value + 1 }))}
+              />
+            )}
+            {/* <Div>
               <Text text={state.value} />
-            </Div>
+            </Div> */}
             <Div>
-              {state.value % 2 === 0 && <Text text="Hello World" />}
-              <Text text="Even Better" />
+              <>
+                {state.value % 2 === 0 && <Text text="Hello World" />}
+                <Text text="Even Better" />
+              </>
             </Div>
-            {state.value % 2 === 0 && (
+            {/* {state.value % 2 === 0 && (
               <Div>
                 <Text text="Hello World" />
                 <Text text="Even Better" />
               </Div>
-            )}
-          </Interval>
-        )}}
+            )} */}
+          </>
+        )}
       </State>
     </DOM>
   );
