@@ -1,11 +1,11 @@
 import React = require("react");
 
-export class Lifecycle extends React.Component<
+export class Lifecycle<SS> extends React.Component<
   {
     onDidMount?();
     onWillUnmount?();
-    onDidUpdate?();
-    getSnapshotBeforeUpdate?();
+    onDidUpdate?(prevProps: Readonly<{}>, prevState: Readonly<{}>, snapshot?: SS);
+    getSnapshotBeforeUpdate?(): SS;
     children?: React.ReactNode;
   },
   {}
@@ -14,8 +14,8 @@ export class Lifecycle extends React.Component<
     this.props.onDidMount && this.props.onDidMount();
   }
 
-  componentDidUpdate() {
-    this.props.onDidUpdate && this.props.onDidUpdate();
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    this.props.onDidUpdate && this.props.onDidUpdate(prevProps, prevState, snapshot);
   }
 
   getSnapshotBeforeUpdate() {
