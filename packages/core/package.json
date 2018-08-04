@@ -15,7 +15,6 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@botique/react-behavior": "^0.0.4",
     "react-reconciler": "^0.12.0",
     "tslib": "^1.9.2"
   },
