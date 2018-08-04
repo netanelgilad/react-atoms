@@ -1,10 +1,10 @@
 import React = require("react");
 
-export class Lifecycle<SS> extends React.Component<
-  {
+export class Lifecycle<TProps = {}, SS = null> extends React.Component<
+  TProps & {
     onDidMount?();
     onWillUnmount?();
-    onDidUpdate?(prevProps: Readonly<{}>, prevState: Readonly<{}>, snapshot?: SS);
+    onDidUpdate?(prevProps: Readonly<TProps>, prevState: Readonly<{}>, snapshot?: SS);
     getSnapshotBeforeUpdate?(): SS;
     children?: React.ReactNode;
   },
