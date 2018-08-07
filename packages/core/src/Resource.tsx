@@ -26,7 +26,7 @@ export function Resource<T>(props: {
             props.releaseResource && props.releaseResource(state.resource)
           }
         >
-          {props.children(state.resource)}
+          {props.children({resource: state.resource})}
         </Lifecycle>
       )}
     </State>
