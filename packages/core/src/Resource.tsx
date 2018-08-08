@@ -6,6 +6,7 @@ import { Lifecycle } from './Lifecycle';
 export function Resource<T>(props: {
   createResource(): Promise<T>;
   releaseResource?(resource: T);
+  onResourceCreated?(resource: T);
   children: Renderable<{ resource?: T }>;
 }) {
   return (
@@ -21,6 +22,7 @@ export function Resource<T>(props: {
             setState({
               resource
             });
+            props.onResourceCreated && props.onResourceCreated(resource);
           }}
           onWillUnmount={() =>
             props.releaseResource && props.releaseResource(state.resource)
