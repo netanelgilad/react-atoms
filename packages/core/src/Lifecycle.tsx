@@ -2,6 +2,7 @@ import React = require("react");
 
 export class Lifecycle<TProps = {}, SS = null> extends React.Component<
   TProps & {
+    onDidCreate?();
     onDidMount?();
     onWillUnmount?();
     onDidUpdate?(prevProps: Readonly<TProps>, prevState: Readonly<{}>, snapshot?: SS);
@@ -10,6 +11,13 @@ export class Lifecycle<TProps = {}, SS = null> extends React.Component<
   },
   {}
 > {
+
+  constructor(props) {
+    super(props);
+
+    props.onDidCreate && props.onDidCreate();
+  }
+
   componentDidMount() {
     this.props.onDidMount && this.props.onDidMount();
   }
